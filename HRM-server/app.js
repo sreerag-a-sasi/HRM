@@ -9,13 +9,19 @@ const cors = require('cors');
 
 app.use(cors());
 
-//database connection
-conn();
-app.use(express.json());
+//database connectiongffgfdafds fdfgdgffds 123456 7891011122345
+conn();//Some update 11111
+app.use(express.json({limit : '100mb'}));
+
+//parsed JSON Data
+app.use(express.urlencoded({extended : false}));
 
 app.use('/',express.static(__dirname + '/../client'));
+
+app.use('/uploads',express.static(__dirname + '/uploads'));
 //userRoutes
 app.use(userRoutes);
+
 
 //authRoutes
 app.use(authRoutes);
