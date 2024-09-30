@@ -20,7 +20,7 @@ function Login() {
       // Send a POST request
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:443/login',
+        url: '/login',
         data: datas,
       });
 
