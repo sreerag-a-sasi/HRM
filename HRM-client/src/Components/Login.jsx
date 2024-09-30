@@ -35,7 +35,7 @@ function Login() {
 
       if (response.data.success && token) {
         localStorage.setItem('token', token);
-        window.location.href = "GetDetails.jsx";
+        // window.location.href = "GetDetails.jsx";
       } else {
         alert(response.data.message);
       }
