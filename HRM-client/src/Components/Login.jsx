@@ -20,7 +20,7 @@ function Login() {
       // Send a POST request
       const response = await axios({
         method: 'post',
-        url: 'http://13.233.4.160:443/login',
+        url: 'http://localhost:443/login',
         data: datas,
       });
 
@@ -35,6 +35,7 @@ function Login() {
 
       if (response.data.success && token) {
         localStorage.setItem('token', token);
+        alert(response.data.message);
         // window.location.href = "GetDetails.jsx";
       } else {
         alert(response.data.message);

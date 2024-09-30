@@ -16,9 +16,13 @@ app.use(express.json({limit : '100mb'}));
 //parsed JSON Data
 app.use(express.urlencoded({extended : false}));
 
-app.use('/',express.static(__dirname + '/../client'));
+// app.use('/',express.static(__dirname + '/../client'));
+
+app.use('/',express.static(__dirname + '/public'));
 
 app.use('/uploads',express.static(__dirname + '/uploads'));
+
+
 //userRoutes
 app.use(userRoutes);
 
@@ -28,5 +32,5 @@ app.use(authRoutes);
 
 
 app.listen(process.env.PORT, () => {
-    console.log(`server running at http://13.233.4.160:${process.env.PORT}`)
+    console.log(`server running at http://localhost:${process.env.PORT}`)
 });
