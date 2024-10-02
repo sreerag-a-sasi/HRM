@@ -1,31 +1,6 @@
-{/* <body onload={getUsersData()}>
-  <nav>
-    <div class="wrapper">
-      <div class="logo"><a href="#">Details</a></div>
-      <ul class="nav-links">
-        <li><input type="text" placeholder="search" onkeyup={finduser()} id="searchbar"/></li>
-        <li><a onclick={logout()}>Log out</a></li>
-        <li><a href="Admin.jsx">Create New</a></li>
-      </ul>
-    </div>
-  </nav>
-  <table>
-    <thead>
-      <tr>
-        <th>First-Name</th>
-        <th>Last-Name</th>
-        <th>email</th>
-      </tr>
-    </thead>
-    <tbody id="dataContainer"></tbody>
-  </table>
-  <script src="script.js"></script>
-</body> */}
-
-
-
-
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -38,32 +13,51 @@ const App = () => {
     const token = localStorage.getItem('token'); // Retrieve the token
     console.log("Access token : ", token);
 
-    let response = await fetch('/users', {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-    });
+    try {
+      const response = await axios.get('/users', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log('User data:', data);
-      setUsers(data.data);
-    } else {
-      console.log('Error fetching user data:', response.statusText);
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('User data:', data);
+        setUsers(data.data);
+      } else {
+        console.log('Error fetching user data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
     }
+  };
+
+  const findUser = (event) => {
+    // Implement the search functionality here
+    console.log("Searching for user:", event.target.value);
+  };
+
+  const logout = () => {
+    // Implement the logout functionality here
+    localStorage.removeItem('token');
+    console.log("Logged out");
+  };
+
+  const handleView = (userId) => {
+    // Implement the view functionality here
+    console.log("Viewing user:", userId);
   };
 
   return (
     <div>
       <nav>
         <div className="wrapper">
-          <div className="logo"><a href="#">Details</a></div>
+          <div className="logo"><Link to="#">Details</Link></div>
           <ul className="nav-links">
-            <li><input type="text" placeholder="search" onKeyUp={finduser()} id="searchbar" /></li>
-            <li><a onClick={logout}>Log out</a></li>
-            <li><a href="admin.html">Create New</a></li>
+            <li><input type="text" placeholder="search" onKeyUp={findUser} id="searchbar" /></li>
+            <li><button onClick={logout}>Log out</button></li>
+            <li><Link to="/admin">Create New</Link></li>
           </ul>
         </div>
       </nav>

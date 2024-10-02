@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+// Login.jsx
+import React, { useState } from 'react';
 import './nav.css';
 import './style.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const login = async (event) => {
     try {
@@ -17,18 +20,9 @@ function Login() {
         password,
       };
 
-      // Send a POST request
-      const response = await axios({
-        method: 'post',
-        url: 'http://13.233.4.160:80/login',
-        data: datas,
-      });
+      const response = await axios.post('http://13.233.4.160:80/login', datas);
 
-      console.log("response :",response);
-      
-      // const parsed_response = await response.json();
-      // console.log("parsed_response : ", parsed_response);
-
+      console.log("response :", response);
 
       const token = response.data.data;
       console.log("token : ", token);
@@ -36,7 +30,7 @@ function Login() {
       if (response.data.success && token) {
         localStorage.setItem('token', token);
         alert(response.data.message);
-        // window.location.href = "GetDetails.jsx";
+        navigate('/get-details'); // Navigate to the GetDetails page
       } else {
         alert(response.data.message);
       }
