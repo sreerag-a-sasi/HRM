@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
 //import './App.css'
-import Login from './Components/Login'
-
+// import Login from './Components/Login'
+import Routing from './Components/Routing'
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
       {/* <getUserData /> */}
+      {< Routing/>}
     </>
   )
 }
