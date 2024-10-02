@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const App = () => {
+const GetDetails = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -84,4 +84,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default GetDetails();
