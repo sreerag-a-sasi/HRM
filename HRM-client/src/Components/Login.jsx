@@ -30,7 +30,7 @@ function Login() {
       if (response.data.success && token) {
         localStorage.setItem('token', token);
         alert(response.data.message);
-        navigate('/get-details'); // Navigate to the GetDetails page
+        navigate('/GetDetails'); // Navigate to the GetDetails page
       } else {
         alert(response.data.message);
       }
