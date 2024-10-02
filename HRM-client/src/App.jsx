@@ -1,8 +1,8 @@
-import Routing from './Components/Routing'
+import Routingapp from './Components/Routing'
 function App() {
   return (
     <>
-      < Routing/>
+      < Routingapp/>
     </>
   )
 }

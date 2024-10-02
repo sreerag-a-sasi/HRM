@@ -4,7 +4,7 @@ import Login from './Login';
 import GetDetails from './GetDetails';
 
 
-function Routing() {
+function Routingapp() {
   return (
     <Router>
       <Routes>
@@ -15,4 +15,4 @@ function Routing() {
   );
 }
 
-export default Routing;
+export default Routingapp;
