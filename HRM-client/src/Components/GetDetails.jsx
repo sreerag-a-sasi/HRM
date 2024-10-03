@@ -84,4 +84,4 @@ const GetDetails = () => {
   );
 };
 
-export default GetDetails();
+export default getUsersData();
