@@ -9,7 +9,7 @@ export default function Routingapp() {
     <Router>
       <Routes>
         <Route path="/" exact element={<Login />} />
-        <Route path="/getUsersData" exact element={<getUsersData />} />
+        <Route path="/getUsersData" exact element={<GetDetails />} />
       </Routes>
     </Router>
   );
