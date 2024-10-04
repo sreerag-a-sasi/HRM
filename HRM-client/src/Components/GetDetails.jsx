@@ -5,6 +5,9 @@ import axios from 'axios';
 const GetDetails = () => {
   const [users, setUsers] = useState([]);
 
+  console.log("getUsers page running...!");
+  
+
   useEffect(() => {
     getUsersData();
   }, []);
@@ -14,7 +17,8 @@ const GetDetails = () => {
     console.log("Access token : ", token);
 
     try {
-      const response = await axios.get('/users', {
+      // const response = await axios.get('/login', datas);
+      const response = await axios.get('/getUser', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

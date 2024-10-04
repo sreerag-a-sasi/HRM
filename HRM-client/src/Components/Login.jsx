@@ -31,6 +31,8 @@ function Login() {
         localStorage.setItem('token', token);
         alert(response.data.message);
         navigate('/getUsersData'); // Navigate to the GetDetails page
+        console.log("redirecting to the users page...");
+        
       } else {
         alert(response.data.message);
       }
