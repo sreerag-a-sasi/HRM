@@ -23,7 +23,7 @@ const GetDetails = () => {
       //   url: '/getUser',
       //   responseType: 'stream'
       // })
-      const response = await axios.get('/getUser', {
+      const response = await axios.get('/Users', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
