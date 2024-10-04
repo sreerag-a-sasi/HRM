@@ -18,12 +18,17 @@ const GetDetails = () => {
 
     try {
       // const response = await axios.get('/login', datas);
-      const response = await axios.get('/getUser', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await axios({
+        method: 'get',
+        url: '/getUser',
+        responseType: 'stream'
+      })
+      // const response = await axios.get('/getUser', {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${token}`
+      //   }
+      // });
 
       if (response.status === 200) {
         const data = response.data;
