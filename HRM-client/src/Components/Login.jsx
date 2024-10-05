@@ -26,7 +26,8 @@ function Login() {
 
       const token = response.data.data;
       console.log("token : ", token);
-      console.log("success : ",response.data.success);
+      const success = response.data.success;
+      console.log("success : ",success);
       
 
       if (response.data.success && token) {
