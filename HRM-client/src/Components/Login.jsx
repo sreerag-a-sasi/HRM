@@ -26,6 +26,8 @@ function Login() {
 
       const token = response.data.data;
       console.log("token : ", token);
+      console.log("success : ",response.data.success);
+      
 
       if (response.data.success && token) {
         localStorage.setItem('token', token);
