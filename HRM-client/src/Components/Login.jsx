@@ -29,7 +29,7 @@ function Login() {
       console.log("response :", response.success);
 
       const token = response.data.data;
-      console.log("token : ", token);
+      console.log("token details : ", token);
       
 
       if (response.data.success && token) {
