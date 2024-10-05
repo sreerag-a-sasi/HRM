@@ -23,11 +23,13 @@ function Login() {
       const response = await axios.post('/login', datas);
 
       console.log("response :", response);
+      console.log("response :", response.data);
+      console.log("response :", response.status);
+      console.log("response :", response.headers);
+      console.log("response :", response.success);
 
       const token = response.data.data;
       console.log("token : ", token);
-      const success = response.data.success;
-      console.log("success : ",success);
       
 
       if (response.data.success && token) {
