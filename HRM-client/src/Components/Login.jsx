@@ -20,7 +20,7 @@ function Login() {
         password,
       };
 
-      const response = await axios.post('http://13.233.4.160:80/login', datas);
+      const response = await axios.post('http://http://43.205.242.174:80/login', datas);
 
       console.log("response :", response);
       console.log("response :", response.data);
