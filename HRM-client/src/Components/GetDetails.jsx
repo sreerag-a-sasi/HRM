@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './nav.css';
+import './get.css';
+import './style.css'
 
 const GetDetails = () => {
   const [users, setUsers] = useState([]);
 
   console.log("getUsers page running...!");
-  
 
   useEffect(() => {
+    console.log("getUsers function loading...!");
     getUsersData();
   }, []);
 
@@ -17,13 +20,7 @@ const GetDetails = () => {
     console.log("Access token : ", token);
 
     try {
-      // const response = await axios.get('/login', datas);
-      // const response = await axios({
-      //   method: 'get',
-      //   url: '/getUser',
-      //   responseType: 'stream'
-      // })
-      const response = await axios.get('/Users', {
+      const response = await axios.get('http://localhost:3000/Users', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -64,9 +61,9 @@ const GetDetails = () => {
         <div className="wrapper">
           <div className="logo"><Link to="#">Details</Link></div>
           <ul className="nav-links">
-            <li><input type="text" placeholder="search" onKeyUp={findUser} id="searchbar" /></li>
-            <li><button onClick={logout}>Log out</button></li>
-            <li><Link to="/admin">Create New</Link></li>
+            <li><input type="text" placeholder="search" onKeyUp={findUser} id='searchbar' /></li>
+            <li><button onClick={logout} className='navbutton'>Log out</button></li>
+            <li><Link to="/admin" className='navbutton'>Create New</Link></li>
           </ul>
         </div>
       </nav>
@@ -93,4 +90,4 @@ const GetDetails = () => {
   );
 };
 
-export default GetDetails();
+export default GetDetails;

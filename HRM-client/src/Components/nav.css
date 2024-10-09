@@ -11,12 +11,12 @@ nav {
   position: relative;
   z-index: 99;
   width: 100%;
+
   background: #242526;
 }
 
 nav .wrapper {
   position: relative;
-  max-width: 1300px;
   padding: 0px 30px;
   height: 72px;
   line-height: 70px;

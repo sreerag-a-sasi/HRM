@@ -20,13 +20,7 @@ function Login() {
         password,
       };
 
-      const response = await axios.post('http://43.205.242.174:80/login', datas);
-
-      console.log("response :", response);
-      console.log("response :", response.data);
-      console.log("response :", response.status);
-      console.log("response :", response.headers);
-      console.log("response :", response.success);
+      const response = await axios.post('http://localhost:3000/login', datas);
 
       const token = response.data.data;
       console.log("token details : ", token);

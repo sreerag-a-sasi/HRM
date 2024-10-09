@@ -29,7 +29,7 @@ button {
     width: 150px;
     height: 30px;
     border: 0px;
-    border-radius: 10px;
+    border-radius: 999px;
     background-color: #ff0000;
     margin-left: 0%;
 }
