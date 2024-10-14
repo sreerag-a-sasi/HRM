@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './nav.css';
 import './get.css';
-import './style.css'
+import './style.css';
 
 const GetDetails = () => {
   const [users, setUsers] = useState([]);
+  const [keyword, setKeyword] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const navigate = useNavigate();
 
   console.log("getUsers page running...!");
 
@@ -31,6 +34,7 @@ const GetDetails = () => {
         const data = response.data;
         console.log('User data:', data);
         setUsers(data.data);
+        setFilteredUsers(data.data); // Initialize filtered users with all users
       } else {
         console.log('Error fetching user data:', response.statusText);
       }
@@ -39,19 +43,79 @@ const GetDetails = () => {
     }
   };
 
-  const findUser = (event) => {
-    // Implement the search functionality here
-    console.log("Searching for user:", event.target.value);
+  const findUser = async () => {
+    console.log("keyword function is working...");
+
+    const token = localStorage.getItem('token');
+    console.log("token : ", token);
+
+    try {
+      const response = await axios.get(`http://localhost:3000/users?keyword=${encodeURIComponent(keyword)}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log("response : ", response);
+
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('User data:', data.data);
+        setFilteredUsers(data.data);
+      } else {
+        console.log('Error fetching user data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
   };
 
+  useEffect(() => {
+    if (keyword) {
+      findUser();
+    } else {
+      setFilteredUsers(users); // Reset to all users if keyword is empty
+    }
+  }, [keyword]);
+
+  // const logout = () => {
+  //   const navigate = useNavigate();
+  //   axios.get('/logout', {
+  //     credentials: 'include' // Include cookies in the request
+  // })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //         if (data.statusCode === 200) {
+  //             clearConsole();
+  //             navigate('/Login');  // Redirect to login page after logout
+  //         } else {
+  //             alert('Logout failed');
+  //         }
+  //     })
+  //     .catch(error => console.error('Error:', error));
+  //   localStorage.removeItem('token');
+  //   console.log("Logged out");
+  // };
   const logout = () => {
-    // Implement the logout functionality here
-    localStorage.removeItem('token');
-    console.log("Logged out");
+    axios.get('/logout', {
+      withCredentials: true // Include cookies in the request
+    })
+
+      .then(response => {
+        console.log("response", response);
+        if (response.status === 200) {
+          localStorage.removeItem('token');
+          console.log("Logged out");
+          navigate('/');  // Redirect to login page after logout
+        } else {
+          alert('Logout failed');
+        }
+      })
+      .catch(error => console.error('Error:', error));
   };
 
   const handleView = (userId) => {
-    // Implement the view functionality here
     console.log("Viewing user:", userId);
   };
 
@@ -61,7 +125,7 @@ const GetDetails = () => {
         <div className="wrapper">
           <div className="logo"><Link to="#">Details</Link></div>
           <ul className="nav-links">
-            <li><input type="text" placeholder="search" onKeyUp={findUser} id='searchbar' /></li>
+            <li><input type="text" placeholder="search" onChange={(e) => setKeyword(e.target.value)} id='searchbar' /></li>
             <li><button onClick={logout} className='navbutton'>Log out</button></li>
             <li><Link to="/admin" className='navbutton'>Create New</Link></li>
           </ul>
@@ -76,7 +140,7 @@ const GetDetails = () => {
           </tr>
         </thead>
         <tbody id="dataContainer">
-          {users.map(user => (
+          {filteredUsers.map(user => (
             <tr key={user._id}>
               <td><input className="in" type="text" id={`name-${user._id}`} value={user.firstName || "Null"} disabled placeholder="name" /></td>
               <td><input className="in" type="text" id={`username-${user._id}`} value={user.lastName || "Null"} disabled placeholder="username" /></td>
