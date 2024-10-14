@@ -9,13 +9,12 @@ body{
     background-color: rgb(116, 112, 112);
     border-radius: 8px;
     justify-content: center;
-    margin-top: 25px;
 }
 .photopage{
     align-items: center;
     justify-content: center;
 }
-input {
+.inputfield {
     display: flex;
     min-width: 50vw;
     min-height: 40px;
@@ -32,6 +31,7 @@ input {
 }
 #profilepic{
     border-radius: 50%;
+    /* padding: 20px; */
     margin: 20px;
     align-items: center;
     object-fit: cover;
@@ -48,7 +48,7 @@ input {
     margin: auto 5px;
     display: flex;
     justify-content: center;
-    background-color: black;
+    /* background-color: black; */
     margin: 20px 0px;
     border-radius: 10px;
     padding: 10px;
@@ -56,6 +56,7 @@ input {
 .edit>div>img{
     margin: 5px;
     border-radius: 50%;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 450px) {

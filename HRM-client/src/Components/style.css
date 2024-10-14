@@ -6,7 +6,6 @@
 .form {
     width: 100%;
     min-height: 100vh;
-    height: auto;
     background: rgb(218, 104, 153);
     background: radial-gradient(circle, rgba(218, 104, 153, 1) 22%, rgba(93, 129, 229, 1) 91%);
     align-content: center;

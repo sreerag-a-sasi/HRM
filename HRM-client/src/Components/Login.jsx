@@ -47,7 +47,6 @@ function Login() {
           <div className="logo"><a href="#">Login</a></div>
           <ul className="nav-links">
             <li><a href="forgot-password.html">Forgot Password</a></li>
-            <li><a href="employee.html">Employee login</a></li>
           </ul>
         </div>
       </nav>

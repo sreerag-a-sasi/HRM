@@ -79,29 +79,10 @@ const GetDetails = () => {
     }
   }, [keyword]);
 
-  // const logout = () => {
-  //   const navigate = useNavigate();
-  //   axios.get('/logout', {
-  //     credentials: 'include' // Include cookies in the request
-  // })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //         if (data.statusCode === 200) {
-  //             clearConsole();
-  //             navigate('/Login');  // Redirect to login page after logout
-  //         } else {
-  //             alert('Logout failed');
-  //         }
-  //     })
-  //     .catch(error => console.error('Error:', error));
-  //   localStorage.removeItem('token');
-  //   console.log("Logged out");
-  // };
   const logout = () => {
     axios.get('/logout', {
       withCredentials: true // Include cookies in the request
     })
-
       .then(response => {
         console.log("response", response);
         if (response.status === 200) {
@@ -115,8 +96,9 @@ const GetDetails = () => {
       .catch(error => console.error('Error:', error));
   };
 
-  const handleView = (userId) => {
-    console.log("Viewing user:", userId);
+  const handleView = (id) => {
+    console.log("Viewing user:", id);
+    navigate(`/userPage/${id}`);
   };
 
   return (
