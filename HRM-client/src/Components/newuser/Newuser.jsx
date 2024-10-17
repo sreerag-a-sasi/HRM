@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 export default function FormComponent() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -69,23 +70,23 @@ export default function FormComponent() {
                     </ul>
                 </div>
             </nav>
-            <div className="form">
-                <h1>Add New Employee</h1>
+            <div className="employeeform">
+                <h1 id='heading'>Add New Employee</h1>
                 <form id="userDataForm" onSubmit={handleSubmit}>
                     <div>
-                        <input type="text" placeholder="Enter The First Name:" name="firstName" value={formData.firstName} onChange={handleChange} />
+                        <input className='newdata' type="text" placeholder="Enter The First Name:" name="firstName" value={formData.firstName} onChange={handleChange} />
                     </div>
                     <div>
-                        <input type="text" placeholder="Enter The Last Name:" name="lastName" value={formData.lastName} onChange={handleChange} />
+                        <input className='newdata' type="text" placeholder="Enter The Last Name:" name="lastName" value={formData.lastName} onChange={handleChange} />
                     </div>
                     <div>
-                        <input type="email" placeholder="Enter The Email:" name="email" value={formData.email} onChange={handleChange} />
+                        <input className='newdata' type="email" placeholder="Enter The Email:" name="email" value={formData.email} onChange={handleChange} />
                     </div>
                     <div>
-                        <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} />
+                        <input className='newdata' type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} />
                     </div>
                     <div>
-                        <button type="submit" id="btn">Add</button>
+                        <button type="submit" id="add">Add</button>
                     </div>
                 </form>
             </div>

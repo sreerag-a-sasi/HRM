@@ -51,7 +51,7 @@ function Login() {
         </div>
       </nav>
       <div className="page">
-        <h1>Please Enter Your details</h1>
+        <h1 id='heading'>Please Enter Your details</h1>
         <form id="userLogin" onSubmit={login}>
           <div>
             <input className='details'

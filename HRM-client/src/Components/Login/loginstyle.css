@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
 * {
     margin: 0%;
     padding: 0%;
@@ -24,7 +27,7 @@
     justify-content: center;
 }
 
-.details:hover{
+.details:hover {
     background-color: black;
     color: white;
     border: 2px solid white;
@@ -41,7 +44,8 @@ input#imageUpload {
     border-radius: 999px;
     background-color: rgba(255, 255, 255, 0.2);
 }
-#loginbutton:hover{
+
+#loginbutton:hover {
     background-color: aliceblue;
 }
 
@@ -52,11 +56,15 @@ form>div {
     justify-content: center;
 }
 
-h1 {
-    font-size: 40px;
-    font-weight: 600;
+#heading {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3.5rem;
     text-align: center;
-    text-shadow: 5px 5px 10px rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
+    /* -webkit-text-stroke: 0.5px white; */
+    /* text-shadow: 5px 5px 10px rgb(255, 0, 0); */
 }
 
 /* 
