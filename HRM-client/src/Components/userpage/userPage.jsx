@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './view.css'; // Assuming you have a CSS file for styling
+import './user.css'; // Assuming you have a CSS file for styling
 
 
 
@@ -51,21 +51,23 @@ const UserPage = () => {
   };
 
   return (
-    <div className="content">
-      <div className="photopage">
-        <img id="profilepic" alt="" width="150px" height="150px" src={user.image || './images/user.png'} />
-      </div>
-      <div className="details">
-        <input type="text" className='inputfield' placeholder="firstname" value={user.firstName || 'null'} disabled />
-        <input type="text" className='inputfield' placeholder="lastname" value={user.lastName || 'null'} disabled />
-        <input type="text" className='inputfield' placeholder="email" value={user.email || 'null'} disabled />
-        <input type="file" className='inputfield' id="image" name="image" accept="image/*" placeholder="image" />
+    <content>
+      <div className="content">
+        <div className="photopage">
+          <img id="profilepic" alt="" width="150px" height="150px" src={user.image || './images/user.png'} />
+        </div>
+        <div className="field">
+          <input type="text" className='inputfield' placeholder="firstname" value={user.firstName || 'null'} disabled />
+          <input type="text" className='inputfield' placeholder="lastname" value={user.lastName || 'null'} disabled />
+          <input type="text" className='inputfield' placeholder="email" value={user.email || 'null'} disabled />
+          <input type="file" className='inputfield' id="image" name="image" accept="image/*" placeholder="image" />
+        </div>
       </div>
       <div className="edit">
         <div><img src='./images/bin.png' alt="" width="50px" height="50px" onClick={handleEdit} /></div>
         <div><img src='./bin.png' alt="" width="50px" height="50px" onClick={handleDelete} /></div>
       </div>
-    </div>
+    </content >
   );
 };
 

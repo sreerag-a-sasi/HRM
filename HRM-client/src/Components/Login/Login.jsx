@@ -1,7 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
-import './nav.css';
-import './style.css';
+import './loginnav.css';
+import './loginstyle.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,16 +45,16 @@ function Login() {
       <nav>
         <div className="wrapper">
           <div className="logo"><a href="#">Login</a></div>
-          <ul className="nav-links">
+          <ul className="navlinks">
             <li><a href="forgot-password.html">Forgot Password</a></li>
           </ul>
         </div>
       </nav>
-      <div className="form">
+      <div className="page">
         <h1>Please Enter Your details</h1>
         <form id="userLogin" onSubmit={login}>
           <div>
-            <input
+            <input className='details'
               type="email"
               placeholder="Enter The email :"
               name="email"
@@ -64,7 +64,7 @@ function Login() {
             />
           </div>
           <div>
-            <input
+            <input className='details'
               type="password"
               placeholder="Enter The Password :"
               name="password"
@@ -74,7 +74,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div><button type="submit" id="btn">Login</button></div>
+          <div><button type="submit" id="loginbutton">Login</button></div>
         </form>
       </div>
     </div>

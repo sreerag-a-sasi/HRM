@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './nav.css';
 import './get.css';
-import './style.css';
 
 const GetDetails = () => {
   const [users, setUsers] = useState([]);
@@ -109,7 +108,7 @@ const GetDetails = () => {
           <ul className="nav-links">
             <li><input type="text" placeholder="search" onChange={(e) => setKeyword(e.target.value)} id='searchbar' /></li>
             <li><button onClick={logout} className='navbutton'>Log out</button></li>
-            <li><Link to="/admin" className='navbutton'>Create New</Link></li>
+            <li><Link to="/Newuser" className='newuser'>Create New</Link></li>
           </ul>
         </div>
       </nav>
