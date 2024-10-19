@@ -1,29 +1,33 @@
-import './newuser.css'
+import './newuser.css';
 import './nav.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 
 export default function FormComponent() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        base64_img: ''
+        image: ''
     });
+
+    const navigate = useNavigate(); // For navigation after submission
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(`Input changed: ${name} = ${value}`); // Log the input changes
         setFormData({ ...formData, [name]: value });
     };
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+        console.log("File selected:", file); // Log the selected file
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            setFormData({ ...formData, base64_img: reader.result });
+            console.log("File read as data URL:", reader.result); // Log the data URL
+            setFormData({ ...formData, image: reader.result });
         };
 
         if (file) {
@@ -31,31 +35,37 @@ export default function FormComponent() {
         }
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        console.log("Form submitted with data:", formData); // Log form data on submit
+
         try {
-            const { firstName, lastName, email, base64_img } = formData;
-            console.log("formdata : ", formData);
-            
+            const { firstName, lastName, email, image } = formData;
             const token = localStorage.getItem('token'); // Retrieve the token
-            console.log("Access token : ", token);
+            console.log("Access token:", token);
 
             const response = await axios.post('http://localhost:3000/users', {
+                firstName,
+                lastName,
+                email,
+                image
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ firstName, lastName, email, image: base64_img })
+                }
             });
 
-            const parsed_response = await response.json();
+            console.log("Response from server:", response.data); // Log server response
 
-            if (parsed_response.success) {
-                alert(parsed_response.message);
+            if (response.data.success) {
+                alert(response.data.message);
+                navigate('/GetDetails'); // Redirect after success
             } else {
-                alert(parsed_response.message || 'Login Failed');
+                alert(response.data.message || 'Submission Failed');
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error during submission:', error.response ? error.response.data : error.message);
         }
     };
 
@@ -63,9 +73,9 @@ export default function FormComponent() {
         <>
             <nav>
                 <div className="wrapper">
-                    <div className="logo"><a >Admin</a></div>
+                    <div className="logo"><a href="/">Admin</a></div>
                     <ul className="nav-links">
-                        <li><Link to="/" className='newuser'>Log out</Link></li>
+                        <li><Link to="/" className='newuser' onClick={logout}>Log out</Link></li>
                         <li><Link to="/GetDetails" className='newuser'>Get Details</Link></li>
                     </ul>
                 </div>
@@ -95,5 +105,7 @@ export default function FormComponent() {
 }
 
 function logout() {
-    // Your logout logic here
+    console.log("Logging out..."); // Log logout action
+    localStorage.removeItem('token'); // Example: removing token
+    window.location.href = '/'; // Redirect to home or login page
 }
