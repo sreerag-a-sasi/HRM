@@ -5,6 +5,7 @@ import GetDetails from './details/GetDetails';
 import { Resetpassword } from './resetpage/Reset-password';
 import UserPage from './userpage/userPage';
 import FormComponent  from './newuser/Newuser';
+// import handlesubmit from './newuser/Newuser'
 
 export default function Routingapp() {
   return (
@@ -16,6 +17,7 @@ export default function Routingapp() {
         <Route path="/Reset-password" element={<Resetpassword />} />
         <Route path="/userPage/:id" element={<UserPage />} />
         <Route path="/Newuser" element={< FormComponent />} />
+        {/* <Route path='/Newuser' element={< FormComponent />} /> */}
       </Routes>
     </Router>
   );

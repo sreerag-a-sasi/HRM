@@ -112,7 +112,7 @@ const UserPage = () => {
     <div>
       <div className="content">
         <div className="photopage">
-          <img id="profilepic" width="150" height="150" src={user.image || '/public/nandu2.jpg'} />
+          <img id="profilepic" width="150" height="150" src={user.image || '/nandu2.jpg'} />
         </div>
         <div className="field">
           <input type="text" className="inputfield" placeholder="First Name" value={user.firstName} readOnly />
@@ -122,8 +122,8 @@ const UserPage = () => {
         </div>
       </div>
       <div className="edit">
-        <img src='/public/pencil.png' width="50" height="50" onClick={handleEdit} />
-        <img src='/public/bin.png' width="50" height="50" onClick={handleDelete} />
+        <img src='/pencil.png' width="50" height="50" onClick={handleEdit} />
+        <img src='/bin.png' width="50" height="50" onClick={handleDelete} />
       </div>
     </div>
   );
