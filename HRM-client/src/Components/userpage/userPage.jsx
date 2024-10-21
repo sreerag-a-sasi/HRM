@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './user.css'; // Assuming you have a CSS file for styling
 
 const UserPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -101,9 +103,33 @@ const UserPage = () => {
     }
   };
 
-  const handleDelete = () => {
-    console.log("Delete button clicked");
-    // Implement delete functionality here
+  const handleDelete = async () => {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert("You must be logged in to continue this process.");
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`http://localhost:3000/users/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log("Delete response:", response.data);
+
+      if (response.data.success) {
+        alert(response.data.message);
+        navigate('/getdetails'); // Redirect after deletion
+      } else {
+        alert(response.data.message || "Delete Failed");
+      }
+    } catch (error) {
+      console.error("Error during deletion:", error);
+      alert("An error occurred while deleting the user.");
+    }
   };
 
   console.log("Current user state:", user);

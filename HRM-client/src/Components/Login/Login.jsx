@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './loginnav.css';
 import './loginstyle.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ function Login() {
 
       const token = response.data.data;
       console.log("token details : ", token);
-      
+
 
       if (response.data.success && token) {
         localStorage.setItem('token', token);
@@ -46,7 +46,9 @@ function Login() {
         <div className="wrapper">
           <div className="logo"><a href="#">Login</a></div>
           <ul className="navlinks">
-            <li><a href="forgot-password.html">Forgot Password</a></li>
+            <li>
+              <Link to="/Forgot">Forgot Password</Link>
+            </li>
           </ul>
         </div>
       </nav>
