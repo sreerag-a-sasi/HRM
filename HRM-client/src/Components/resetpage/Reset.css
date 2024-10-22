@@ -259,7 +259,7 @@ section .signin {
 
 section .signin .content {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -274,14 +274,14 @@ section .signin .content h2 {
 }
 
 section .signin .content {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
 .content {
-    width: 100%;
+    /* width: 100%; */
     min-height: 18rem;
     height: 18rem;
     /* background: rgb(218, 104, 153); */
