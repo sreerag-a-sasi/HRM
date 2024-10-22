@@ -18,6 +18,8 @@ td>.in {
   border: 1px solid red;
   border-radius: 8px;
   padding-left: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 #viewbutton {

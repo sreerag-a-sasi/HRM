@@ -10,7 +10,9 @@ export function Resetpassword() {
 
   const handleReset = async (event) => {
     event.preventDefault();
-    
+
+    const currentUrl = window.location.href; // Define currentUrl here
+
     console.log("Resetting password ...");
 
     const data = {
@@ -21,7 +23,7 @@ export function Resetpassword() {
     console.log("Data (front-end):", data);
 
     try {
-      const response = await axios.patch('/reset-password', data, {
+      const response = await axios.patch('http://localhost:3000/reset-password', data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -84,34 +86,27 @@ export function Resetpassword() {
       <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
       <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
       <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
 
       <div className="signin">
         <div className="content">
           <h2>Reset Password</h2>
           <form id="reset-password" onSubmit={handleReset}>
             <div>
-              <input 
-                type="password" 
-                placeholder="Enter The Password :" 
-                name="password" 
-                id="password" 
-                required 
+              <input
+                type="password"
+                placeholder="Enter The Password :"
+                name="password"
+                id="password"
+                className='password-input'
+                required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} 
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
-              <button type="submit" id="btn">Submit</button>
+              <div>
+                <button type="submit" className="submit-button">Submit</button>
+              </div>
             </div>
           </form>
           {message && <p>{message}</p>}

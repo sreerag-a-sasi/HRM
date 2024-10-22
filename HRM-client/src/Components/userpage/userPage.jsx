@@ -35,7 +35,7 @@ const UserPage = () => {
               firstName: data.firstName || '',
               lastName: data.lastName || '',
               email: data.email || '',
-              image: data.image || '/public/nandu2.jpg'
+              image: data.image || ''
             });
             console.log("User data set:", data);
           } else {
@@ -138,7 +138,7 @@ const UserPage = () => {
     <div>
       <div className="content">
         <div className="photopage">
-          <img id="profilepic" width="150" height="150" src={user.image || '/nandu2.jpg'} />
+          <img id="profilepic" width="150" height="150" src={user.image || '/admin.png'} />
         </div>
         <div className="field">
           <input type="text" className="inputfield" placeholder="First Name" value={user.firstName} readOnly />
