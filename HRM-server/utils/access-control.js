@@ -55,7 +55,7 @@ exports.access_control = async function (access_types, req, res, next) {
                     return res.status(response.statusCode).send(response);
                 } else {
                     let user_id = decoded.user_id;
-                    // console.log("user_id : ", user_id);
+                    console.log("user_id : ", user_id);
                     req.body.user_id = user_id;//Writing request to add user_id decoded from token (ie login user id)
 
                     if (user_id) {
@@ -63,7 +63,7 @@ exports.access_control = async function (access_types, req, res, next) {
                         // console.log("user :", user);
 
                         let user_type = user.user_type;
-                        // console.log("user_type : ", user_type);
+                        console.log("user_type : ", user_type);
 
                         // let usertype = user_types.user_type;
                         // console.log(usertype);
