@@ -240,12 +240,14 @@ exports.addUser = async function (req, res) {
 exports.updateUser = async function (req, res) {
     try {
         let body = req.body;
-        console.log("body : ", body);
+        console.log("body from userconroller : ", body);
 
         let firstName = req.body.firstName;
         let lastName = req.body.lastName;
         let email = req.body.email;
         let image = req.body.image;
+        console.log("image file from usercontroller:", image || 'null');
+        
 
         const count = await users.countDocuments({ email: req.body.email });
         console.log(`Number of documents with the same email: ${count}`);

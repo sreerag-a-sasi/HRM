@@ -63,7 +63,7 @@ exports.access_control = async function (access_types, req, res, next) {
                         // console.log("user :", user);
 
                         let user_type = user.user_type;
-                        console.log("user_type : ", user_type);
+                        console.log("user_type : ", user_type.user_type);
 
                         // let usertype = user_types.user_type;
                         // console.log(usertype);

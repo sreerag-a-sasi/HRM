@@ -67,7 +67,7 @@ exports.fileUpload = async function (file, directory) {
     return new Promise((resolve, reject)=> {
         try {
 
-            // console.log("file : ", file);
+            console.log("file from file-upload : ", file);
 
             if(file) {
                 let mime_type = file.split(';')[0].split(':')[1].split('/')[1];
