@@ -12,6 +12,7 @@ const UserPage = () => {
     email: '',
     image: ''
   });
+  const [newImage, setNewImage] = useState(null); // State to hold the new image
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -50,54 +51,6 @@ const UserPage = () => {
     loadUserData();
   }, [id]);
 
-  // const handleEdit = async (event) => {
-  //   event.preventDefault();
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     alert("You must be logged in to continue this process.");
-  //     return;
-  //   }
-  //   const { firstName, lastName, image } = user;
-  //   const data = { firstName, lastName, image };
-  //   console.log("Editing user with data:", data);
-  //   try {
-  //     const response = await axios.put(`http://localhost:3000/users/${id}`, data, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-  //     console.log("Response from update:", response.data);
-  //     const parsed_response = response.data;
-  //     if (parsed_response.success) {
-  //       alert(parsed_response.message);
-  //       setUser(parsed_response.data); // Update state with new user data
-  //       console.log("User updated successfully:", parsed_response.data);
-  //     } else {
-  //       alert(parsed_response.message || "Update Failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during update:", error);
-  //     alert("Error during update");
-  //   }
-  // };
-  // const handleFileChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     console.log("File selected:", file);
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       console.log("File read successfully, updating image state.");
-  //       setUser((prevUser) => ({ ...prevUser, image: reader.result }));
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     console.log("No file selected, setting image to null.");
-  //     setUser((prevUser) => ({ ...prevUser, image: null }));
-  //   }
-  // };
-
-
   const handleFileChange = (e) => {
     const file = e.target.files[0]; // Access the first selected file
     if (file) {
@@ -105,12 +58,12 @@ const UserPage = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         console.log("File read successfully, updating image state.");
-        setUser((prevUser) => ({ ...prevUser, image: reader.result })); // Update image state with base64 encoded string
+        setNewImage(reader.result); // Update newImage state with base64 encoded string
       };
       reader.readAsDataURL(file); // Read the file as a data URL
     } else {
       console.log("No file selected, setting image to null.");
-      setUser((prevUser) => ({ ...prevUser, image: null })); // Set image to null if no file is selected
+      setNewImage(null); // Set newImage to null if no file is selected
     }
   };
 
@@ -123,17 +76,16 @@ const UserPage = () => {
       return;
     }
 
-    // Check if no file was selected during this edit operation
-    const { firstName, lastName, image } = user;
+    const firstName = document.querySelector("input[name='firstName']").value;
+    const lastName = document.querySelector("input[name='lastName']").value;
+    const image = newImage; // Use newImage instead of user.image
+
     const data = {
       firstName,
       lastName,
-      image: image || null // Ensure image is null if not selected
+      image: image || null  // Ensure image is null if not selected
     };
     console.log("Editing user with data:", data);
-
-    let json_data =data;
-    console.log("json_data : ", json_data);
 
     try {
       // Send a PUT request to update user data
@@ -141,8 +93,7 @@ const UserPage = () => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
-        },
-        body: json_data
+        }
       });
       console.log("Response from update:", response.data);
       const parsed_response = response.data;
@@ -150,6 +101,7 @@ const UserPage = () => {
         alert(parsed_response.message);
         setUser(parsed_response.data); // Update state with new user data
         console.log("User updated successfully:", parsed_response.data);
+        window.location.reload();
       } else {
         alert(parsed_response.message || "Update Failed");
       }
@@ -158,10 +110,6 @@ const UserPage = () => {
       alert("Error during update");
     }
   };
-
-
-
-
 
   const handleDelete = async () => {
     const token = localStorage.getItem('token');
@@ -191,6 +139,7 @@ const UserPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
@@ -199,7 +148,7 @@ const UserPage = () => {
     <div>
       <div className="content">
         <div className="photopage">
-          <img id="profilepic" width="150" height="150" src={`http://localhost:3000/${user.image}` || '/admin.png'} />
+          <img id="profilepic" width="150" height="150" src={user.image ? `http://localhost:3000/${user.image}` : '/admin.png'} alt="Profile" />
         </div>
         <div className="field">
           <input

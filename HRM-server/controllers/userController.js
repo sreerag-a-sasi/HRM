@@ -303,6 +303,122 @@ exports.updateUser = async function (req, res) {
 }
 
 
+// exports.updateUser = async function (req, res) {
+//     try {
+//       let body = req.body;
+//       console.log("body from usercontroller:", body);
+  
+//       let { firstName, lastName, email, image } = body;
+//       console.log("image file from usercontroller:", image || 'null');
+  
+//       const count = await users.countDocuments({ email: req.body.email });
+//       console.log(`Number of documents with the same email: ${count}`);
+  
+//       let img_path;
+//       if (image && image !== "removed" && image !== null) {
+//         img_path = await fileUpload(image, "users");
+//       }
+  
+//       // Prepare the update data, only include img_path if it's defined
+//       const update_datas = {
+//         firstName,
+//         lastName,
+//         email,
+//         ...(img_path !== undefined && { image: img_path }),
+//       };
+  
+//       // Save to database
+//       let id = req.params.id;
+//       console.log("id:", id);
+  
+//       const update_user = await users.findOneAndUpdate(
+//         { _id: id },
+//         { $set: update_datas },
+//         { new: true } // Return the updated document
+//       );
+  
+//       if (update_user && count === 0) {
+//         let response = success_function({
+//           statusCode: 201,
+//           data: update_user,
+//           message: "User updated successfully",
+//         });
+//         return res.status(response.statusCode).send(response);
+//       } else {
+//         let response = error_function({
+//           statusCode: 400,
+//           message: "User updation failed",
+//         });
+//         return res.status(response.statusCode).send(response);
+//       }
+//     } catch (error) {
+//       console.log("error:", error);
+//       let response = error_function({
+//         statusCode: 400,
+//         message: "something went wrong",
+//       });
+//       return res.status(response.statusCode).send(response);
+//     }
+//   };
+  
+
+
+// exports.updateUser = async function (req, res) {
+//     try {
+//       let body = req.body;
+//       console.log("body from usercontroller:", body);
+  
+//       let { firstName, lastName, email, image } = body;
+//       console.log("image file from usercontroller:", image || 'null');
+  
+//       let img_path;
+//       if (image && image !== "removed" && image !== null) {
+//         img_path = await fileUpload(image, "users");
+//       }
+  
+//       // Prepare the update data, only include img_path if it's defined
+//       const update_datas = {
+//         firstName,
+//         lastName,
+//         email,
+//         ...(img_path !== undefined && { image: img_path }),
+//       };
+  
+//       // Save to database
+//       let id = req.params.id;
+//       console.log("id:", id);
+  
+//       const update_user = await users.findOneAndUpdate(
+//         { _id: id },
+//         { $set: update_datas },
+//         { new: true } // Return the updated document
+//       );
+  
+//       if (update_user && count === 0) {
+//         let response = success_function({
+//           statusCode: 201,
+//           data: update_user,
+//           message: "User updated successfully",
+//         });
+//         return res.status(response.statusCode).send(response);
+//       } else {
+//         let response = error_function({
+//           statusCode: 400,
+//           message: "User updation failed",
+//         });
+//         return res.status(response.statusCode).send(response);
+//       }
+//     } catch (error) {
+//       console.log("error:", error);
+//       let response = error_function({
+//         statusCode: 400,
+//         message: "something went wrong",
+//       });
+//       return res.status(response.statusCode).send(response);
+//     }
+//   };
+  
+
 
 // exports.getUser = async function (req, res) {
 //     try {
