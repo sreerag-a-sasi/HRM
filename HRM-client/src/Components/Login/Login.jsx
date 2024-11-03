@@ -44,7 +44,7 @@ function Login() {
     <div>
       <nav>
         <div className="wrapper">
-          <div className="logo"><a href="#">Login</a></div>
+          <div className="logo"><a href="/">Login</a></div>
           <ul className="navlinks">
             <li>
               <Link to="/Forgot">Forgot Password</Link>

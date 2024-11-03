@@ -78,7 +78,7 @@ const UserPage = () => {
 
     const firstName = document.querySelector("input[name='firstName']").value;
     const lastName = document.querySelector("input[name='lastName']").value;
-    const image = newImage; // Use newImage instead of user.image
+    const image = newImage; // Use newImage instead of user.image this prevents loading of previous image of the user
 
     const data = {
       firstName,

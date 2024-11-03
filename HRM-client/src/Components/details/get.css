@@ -1,4 +1,4 @@
-table {
+/* table {
   width: 100%;
   height: auto;
   background-color: rgb(84, 84, 86);
@@ -30,4 +30,65 @@ td>.in {
   border: 2px solid red;
   border-radius: 10px;
   background-color: greenyellow;
+} */
+
+table {
+  width: 100%;
+  height: auto;
+  background-color: rgb(84, 84, 86);
+  align-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: rgb(84, 84, 86);
+}
+
+td > .in {
+  width: 100%;
+  min-width: 300px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 8px;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#viewbutton {
+  margin: 0px auto;
+  width: 100%;
+  min-width: 80px;
+  height: 40px;
+  border: 2px solid red;
+  border-radius: 10px;
+  background-color: greenyellow;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  td > .in {
+    min-width: 250px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  #viewbutton {
+    min-width: 70px;
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  td > .in {
+    min-width: 200px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  #viewbutton {
+    min-width: 60px;
+    height: 30px;
+  }
 }
